@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferragroexim - Посредник в агропромышленном секторе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="images/logo-ferragroexim.png" type="image/x-icon">
+    <meta name="theme-color" content="black">
+    <style>
+        /* Дополнительные стили для мобильной навигации */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 10px 0;
+            }
+            
+            .logo {
+                order: 1;
+                flex: 1;
+                min-width: 60%;
+                padding-right: 15px;
+            }
+            
+            .menu-toggle {
+                order: 2;
+                display: flex;
+                padding: 12px;
+                margin-left: 10px;
+                background-color: rgba(0,0,0,0.05);
+                border-radius: 50%;
+                z-index: 1001;
+            }
+            
+            .header-controls {
+                order: 3;
+                width: 100%;
+                justify-content: flex-end;
+                margin-top: 10px;
+            }
+            
+            .nav-links {
+                order: 4;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+            
+            .menu-toggle {
+                padding: 10px;
+                font-size: 1.2rem;
+            }
+            
+            .current-language span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header & Navigation -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/logo-ferragroexim.png" alt="Ferragroexim Logo">
+                <h1>Ferragroexim</h1>
+            </div>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav-links" id="navLinks">
+                <a href="#about">О компании</a>
+                <a href="#services">Направления</a>
+                <a href="#partners">Партнеры</a>
+                <a href="#certificates">Сертификаты</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+                
+                <div class="language-switcher">
+                    <div class="current-language">
+                        <i class="fas fa-globe"></i>
+                        <span>RU</span>
+                    </div>
+                    <div class="language-dropdown">
+                        <div class="language-option" data-lang="ru">
+                            <i class="fas fa-check"></i>
+                            Русский
+                        </div>
+                        <div class="language-option" data-lang="ro">
+                            <i class="fas fa-check"></i>
+                            Română
+                        </div>
+                        <div class="language-option" data-lang="ua">
+                            <i class="fas fa-check"></i>
+                            Українська
+                        </div>
+                        <div class="language-option" data-lang="en">
+                            <i class="fas fa-check"></i>
+                            English
+                        </div>
+                        <div class="language-option" data-lang="de">
+                            <i class="fas fa-check"></i>
+                            Deutsch
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id="content-wrapper" class="content-transition">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Связываем фермеров с промышленными предприятиями</h2>
+                    <p>Ferragroexim специализируется на закупке сельскохозяйственной продукции у фермеров и поставке сырья крупным перерабатывающим заводам.</p>
+                    <a href="#contact" class="cta-button">Связаться с нами</a>
+                </div>
+                <div class="hero-image">
+                    <img src="images/hero-image.jpg" alt="Сельскохозяйственная продукция">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="section-title">
+                <h2>О нашей компании</h2>
+                <p>Надежный партнер в агропромышленном секторе с 2010 года</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Ferragroexim – гарантия эффективного и надежного взаимодействия между покупателем и продавцом</h3>
+                    <p>Мы берем на себя обязательство по выгодной реализации вашего товара, поиску необходимого продукта по той цене, которая вам нужна. Качественно и индивидуально подходим к каждому клиенту и проекту заказа:</p>
+                    
+                    <ul class="features-list">
+                        <li>Мы подготовим весь пакет документов для реализации вашего продукта по всем международным регламентам</li>
+                        <li>Найдем клиента, нужного именно вам</li>
+                        <li>Обеспечим надежность сделки:
+                            <ul>
+                                <li>Застрахуем груз</li>
+                                <li>Совершим безопасную оплату</li>
+                                <li>Доставим продукт гарантированно в срок к воротам вашего склада</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="about-stats">
+                        <div class="stat-card fade-in-up">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Лет опыта</div>
+                        </div>
+                        <div class="stat-card fade-in-up">
+                            <div class="stat-number">250+</div>
+                            <div class="stat-label">Постоянных партнеров</div>
+                        </div>
+                        <div class="stat-card fade-in-up">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Довольных клиентов</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image fade-in">
+                    <img src="images/about-image.jpg" alt="Команда Ferragroexim">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section services" id="services">
+            <div class="section-title">
+                <h2>Основные направления</h2>
+                <p>Специализируемся на закупке и реализации сельхозпродукции</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/oil.jpg" alt="Масло растительного и животного происхождения">
+                    </div>
+                    <div class="service-content">
+                        <h3>Масло растительное и животное</h3>
+                        <p>Закупка и реализация различных видов масел для пищевой промышленности.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/grain.jpg" alt="Зерновые культуры">
+                    </div>
+                    <div class="service-content">
+                        <h3>Зерновые</h3>
+                        <p>Пшеница, кукуруза, ячмень, рожь и другие зерновые культуры высшего качества.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/fish.jpg" alt="Рыба и морепродукты">
+                    </div>
+                    <div class="service-content">
+                        <h3>Рыба</h3>
+                        <p>Свежая и замороженная рыба различных сортов для оптовых поставок.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/meat.jpg" alt="Мясо животных">
+                    </div>
+                    <div class="service-content">
+                        <h3>Животное мясо</h3>
+                        <p>Охлажденное и глубокой заморозки: говядина, свинина, птица по стандартам качества.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/bulk.jpg" alt="Сыпучие продукты">
+                    </div>
+                    <div class="service-content">
+                        <h3>Сыпучие продукты</h3>
+                        <p>Сахар, какао, кофе, чай, мука различных сортов для пищевой промышленности.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up">
+                    <div class="service-image">
+                        <img src="images/milk.jpg" alt="Молоко и молочные продукты">
+                    </div>
+                    <div class="service-content">
+                        <h3>Молоко и молочные продукты</h3>
+                        <p>Свежее молоко, сыры, йогурты и другие молочные продукты высшего качества.</p>
+                        <a href="#contact" class="service-link">
+                            Заказать <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="section partners-section" id="partners">
+            <div class="section-title">
+                <h2>Наши партнеры</h2>
+                <p>Сотрудничаем с ведущими предприятиями агропромышленного комплекса</p>
+            </div>
+            
+            <div class="partners-container">
+                <div class="partners-grid">
+                    <a href="https://uamk.com.ua/ru/glavnaya/" class="partner-card fade-in-up">
+                        <img src="images/partner1.png" alt="UAMK" class="partner-logo">
+                    </a>
+                    <a href="https://allseeds.com/uk" class="partner-card fade-in-up">
+                        <img src="images/partner2.png" alt="Allseeds" class="partner-logo">
+                    </a>
+                    <a href="https://hurt-company.com/" class="partner-card fade-in-up">
+                        <img src="images/partner3.png" alt="Hurt Company" class="partner-logo">
+                    </a>
+                    <a href="https://latifundist.com/" class="partner-card fade-in-up">
+                        <img src="images/partner4.png" alt="Latifundist" class="partner-logo">
+                    </a>
+                    <a href="https://corp.globino.ua/" class="partner-card fade-in-up">
+                        <img src="images/partner5.png" alt="Globino" class="partner-logo">
+                    </a>
+                    <a href="https://agrozernoholding.com/ru/" class="partner-card fade-in-up">
+                        <img src="images/partner6.png" alt="Agrozerno Holding" class="partner-logo">
+                    </a>
+                    <a href="https://tripoli.land/elevators/elevator-rsm-plus" class="partner-card fade-in-up">
+                        <img src="images/partner7.png" alt="Tripoli Elevator" class="partner-logo">
+                    </a>
+                    <a href="https://www.akzd.com.ua/" class="partner-card fade-in-up">
+                        <img src="images/partner8.png" alt="AKZD" class="partner-logo">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section class="section certificates" id="certificates">
+            <div class="section-title">
+                <h2>Сертификаты качества</h2>
+                <p>Наши документы, подтверждающие качество продукции</p>
+            </div>
+            
+<div class="certificates-grid">
+    <!-- Сертификат 1 -->
+    <a href="documents/iso9001_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
+        <div class="certificate-image">
+            <img src="images/cert1.jpg" alt="Сертификат ISO 9001">
+        </div>
+        <div class="certificate-content">
+            <h3>ISO 9001:2015</h3>
+            <p>Система управления качеством</p>
+            <p>Действует до: 28.07.2027</p>
+        </div>
+    </a>
+
+    <!-- Сертификат 2 -->
+    <a href="documents/iso22000_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
+        <div class="certificate-image">
+            <img src="images/cert2.jpg" alt="Сертификат ISO 22000">
+        </div>
+        <div class="certificate-content">
+            <h3>ISO 22000:2018</h3>
+            <p>Система безопасности пищевых продуктов</p>
+            <p>Действует до: 28.07.2027</p>
+        </div>
+    </a>
+
+    <!-- Сертификат 3 -->
+    <a href="documents/dstu_iso9001_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
+        <div class="certificate-image">
+            <img src="images/cert3.jpg" alt="Сертификат ДСТУ ISO 9001">
+        </div>
+        <div class="certificate-content">
+            <h3>ДСТУ EN ISO 9001:2018</h3>
+            <p>Украинский стандарт качества</p>
+            <p>Действует до: 28.07.2027</p>
+        </div>
+    </a>
+
+    <!-- Сертификат 4 -->
+    <a href="documents/dstu_iso22000_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
+        <div class="certificate-image">
+            <img src="images/cert4.jpg" alt="Сертификат ДСТУ ISO 22000">
+        </div>
+        <div class="certificate-content">
+            <h3>ДСТУ ISO 22000:2019</h3>
+            <p>Украинский стандарт безопасности продуктов</p>
+            <p>Действует до: 28.07.2027</p>
+        </div>
+    </a>
+</div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Свяжитесь с нами</h2>
+                    <p>У вас есть вопросы о сотрудничестве или вы хотите стать нашим партнером? Мы всегда готовы помочь!</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Адрес</h4>
+                                <p>Tiraspol. Moldova 3300. St. Suvorov 18</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Телефон</h4>
+                                <a href="tel:+37377916613">+373 779-166-13</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:ferragroexim@gmail.com">ferragroexim@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="contact-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.125073542003!2d29.6170084156091!3d46.83943407913886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c8e2a9a4d0a7c5%3A0x1c8a4d0a7c5d0a7c!2sStrada%20Suvorov%2018%2C%20Tiraspol!5e0!3m2!1sru!2s!4v1659975682890!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>COMMERCIAL OFFER FERRAGROEXIM S.R.L.</h3>
+                    <p>Надежный посредник между производителями сельхозпродукции и перерабатывающими предприятиями.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Навигация</h3>
+                    <div class="footer-links">
+                        <a href="#about">О компании</a>
+                        <a href="#services">Направления деятельности</a>
+                        <a href="#partners">Партнеры</a>
+                        <a href="#certificates">Сертификаты</a>
+                        <a href="#contact">Контакты</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <div class="footer-links">
+                        <a href="tel:+37377916613"><i class="fas fa-phone-alt"></i> +373 779-166-13</a>
+                        <a href="mailto:ferragroexim@gmail.com"><i class="fas fa-envelope"></i> ferragroexim@gmail.com</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> Tiraspol. Moldova 3300. St. Suvorov 18</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Ferragroexim. Все права защищены.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
