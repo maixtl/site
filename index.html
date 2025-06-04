@@ -61,6 +61,13 @@
             }
         }
     </style>
+    <!-- EmailJS SDK (необходимо для отправки формы через EmailJS) -->
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("3FEpn03wbjFch0HTb"); // Замените YOUR_USER_ID на ваш Public Key из EmailJS
+        })();
+    </script>
 </head>
 <body>
 <!-- Header & Navigation -->
@@ -79,8 +86,7 @@
                 <a href="#about">О компании</a>
                 <a href="#services">Направления</a>
                 <a href="#partners">Партнеры</a>
-                <a href="#certificates">Сертификаты</a>
-                <a href="#contact">Контакты</a>
+                <a href="#contact">Станьте нашим партнёром</a>
             </nav>
             
             <div class="header-controls">
@@ -307,108 +313,22 @@
             </div>
         </section>
 
-        <!-- Certificates Section -->
-        <section class="section certificates" id="certificates">
-            <div class="section-title">
-                <h2>Сертификаты качества</h2>
-                <p>Наши документы, подтверждающие качество продукции</p>
-            </div>
-            
-<div class="certificates-grid">
-    <!-- Сертификат 1 -->
-    <a href="documents/iso9001_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
-        <div class="certificate-image">
-            <img src="images/cert1.jpg" alt="Сертификат ISO 9001">
-        </div>
-        <div class="certificate-content">
-            <h3>ISO 9001:2015</h3>
-            <p>Система управления качеством</p>
-            <p>Действует до: 28.07.2027</p>
-        </div>
-    </a>
+        <!-- Новый блок: Станьте нашим партнёром прямо сейчас (старые секции сертификатов и контактов удалены) -->
+        <section class="partner" id="contact">
+            <div class="partner-container">
+                <h2>Станьте нашим партнёром прямо сейчас</h2>
+                <form id="partnerForm" class="partner-form">
+                    <label for="name">Имя</label>
+                    <input type="text" id="name" name="name" required>
 
-    <!-- Сертификат 2 -->
-    <a href="documents/iso22000_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
-        <div class="certificate-image">
-            <img src="images/cert2.jpg" alt="Сертификат ISO 22000">
-        </div>
-        <div class="certificate-content">
-            <h3>ISO 22000:2018</h3>
-            <p>Система безопасности пищевых продуктов</p>
-            <p>Действует до: 28.07.2027</p>
-        </div>
-    </a>
+                    <label for="email">Почта</label>
+                    <input type="email" id="email" name="email" required>
 
-    <!-- Сертификат 3 -->
-    <a href="documents/dstu_iso9001_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
-        <div class="certificate-image">
-            <img src="images/cert3.jpg" alt="Сертификат ДСТУ ISO 9001">
-        </div>
-        <div class="certificate-content">
-            <h3>ДСТУ EN ISO 9001:2018</h3>
-            <p>Украинский стандарт качества</p>
-            <p>Действует до: 28.07.2027</p>
-        </div>
-    </a>
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
 
-    <!-- Сертификат 4 -->
-    <a href="documents/dstu_iso22000_2024-2027.pdf" target="_blank" class="certificate-card fade-in-up">
-        <div class="certificate-image">
-            <img src="images/cert4.jpg" alt="Сертификат ДСТУ ISO 22000">
-        </div>
-        <div class="certificate-content">
-            <h3>ДСТУ ISO 22000:2019</h3>
-            <p>Украинский стандарт безопасности продуктов</p>
-            <p>Действует до: 28.07.2027</p>
-        </div>
-    </a>
-</div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Свяжитесь с нами</h2>
-                    <p>У вас есть вопросы о сотрудничестве или вы хотите стать нашим партнером? Мы всегда готовы помочь!</p>
-                    
-                    <div class="contact-methods">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Адрес</h4>
-                                <p>Tiraspol. Moldova 3300. St. Suvorov 18</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Телефон</h4>
-                                <a href="tel:+37377916613">+373 779-166-13</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email</h4>
-                                <a href="mailto:ferragroexim@gmail.com">ferragroexim@gmail.com</a>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-                <div class="contact-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2720.125073542003!2d29.6170084156091!3d46.83943407913886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c8e2a9a4d0a7c5%3A0x1c8a4d0a7c5d0a7c!2sStrada%20Suvorov%2018%2C%20Tiraspol!5e0!3m2!1sru!2s!4v1659975682890!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+                    <button type="submit">Отправить</button>
+                </form>
             </div>
         </section>
 
@@ -426,8 +346,6 @@
                         <a href="#about">О компании</a>
                         <a href="#services">Направления деятельности</a>
                         <a href="#partners">Партнеры</a>
-                        <a href="#certificates">Сертификаты</a>
-                        <a href="#contact">Контакты</a>
                     </div>
                 </div>
                 
