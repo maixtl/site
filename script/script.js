@@ -1,9 +1,30 @@
+// ----------------------------
+// EmailJS: Отправка формы партнёра
+// ----------------------------
+const partnerForm = document.getElementById('partnerForm');
+if (partnerForm) {
+    partnerForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Отключаем стандартное поведение формы
+
+        emailjs.sendForm("service_6jy6e6s", "template_bonogtw", this)
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('Ваше сообщение успешно отправлено!');
+                partnerForm.reset();
+            }, function (error) {
+                console.log('FAILED...', error);
+                alert('При отправке произошла ошибка. Попробуйте ещё раз.');
+            });
+    });
+}
+
+// ----------------------------
 // Theme Toggle
+// ----------------------------
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const themeIcon = themeToggle.querySelector('i');
 
-// Check for saved theme preference
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
     body.classList.add('dark-theme');
@@ -12,7 +33,6 @@ if (savedTheme === 'dark') {
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-theme');
-    
     if (body.classList.contains('dark-theme')) {
         themeIcon.classList.replace('fa-sun', 'fa-moon');
         localStorage.setItem('theme', 'dark');
@@ -22,19 +42,20 @@ themeToggle.addEventListener('click', () => {
     }
 });
 
-// Language Switcher - Full Implementation
+// ----------------------------
+// Language Switcher
+// ----------------------------
 const languageOptions = document.querySelectorAll('.language-option');
 const currentLanguage = document.querySelector('.current-language span');
 const contentWrapper = document.getElementById('content-wrapper');
 
-// Complete translations
+// Объект переводов (обновленная версия, включает новые ключи для навигации и формы)
 const translations = {
     ru: {
         navAbout: "О компании",
         navServices: "Направления",
         navPartners: "Партнеры",
-        navCertificates: "Сертификаты",
-        navContact: "Контакты",
+        navPartnerNow: "Станьте нашим партнёром",
         heroTitle: "Связываем фермеров с промышленными предприятиями",
         heroText: "Ferragroexim специализируется на закупке сельскохозяйственной продукции у фермеров и поставке сырья крупным перерабатывающим заводам.",
         ctaButton: "Связаться с нами",
@@ -70,14 +91,11 @@ const translations = {
         service6Link: "Заказать",
         partnersTitle: "Наши партнеры",
         partnersSub: "Сотрудничаем с ведущими предприятиями агропромышленного комплекса",
-        certificatesTitle: "Сертификаты качества",
-        certificatesSub: "Наши документы, подтверждающие качество продукции",
-        contactTitle: "Свяжитесь с нами",
-        contactText: "У вас есть вопросы о сотрудничестве или вы хотите стать нашим партнером? Мы всегда готовы помочь!",
-        address: "Адрес",
-        addressText: "ул. Суворова 18, Тирасполь, Молдова, 3300",
-        phone: "Телефон",
-        email: "Email",
+        contactTitle: "Станьте нашим партнёром прямо сейчас",
+        formName: "Имя",
+        formEmail: "Почта",
+        formMessage: "Сообщение",
+        formButton: "Отправить",
         footerTitle: "Ferragroexim",
         footerText: "Надежный посредник между производителями сельхозпродукции и перерабатывающими предприятиями.",
         footerNav: "Навигация",
@@ -86,15 +104,13 @@ const translations = {
         nav1: "О компании",
         nav2: "Направления деятельности",
         nav3: "Партнеры",
-        nav4: "Сертификаты",
-        nav5: "Контакты"
+        nav4: "Станьте нашим партнёром"
     },
     en: {
         navAbout: "About",
         navServices: "Services",
         navPartners: "Partners",
-        navCertificates: "Certificates",
-        navContact: "Contact",
+        navPartnerNow: "Become Our Partner",
         heroTitle: "Connecting farmers with industrial enterprises",
         heroText: "Ferragroexim specializes in purchasing agricultural products from farmers and supplying raw materials to large processing plants.",
         ctaButton: "Contact Us",
@@ -130,14 +146,11 @@ const translations = {
         service6Link: "Order",
         partnersTitle: "Our Partners",
         partnersSub: "Cooperating with leading enterprises of the agro-industrial complex",
-        certificatesTitle: "Quality Certificates",
-        certificatesSub: "Our documents confirming the quality of products",
-        contactTitle: "Contact Us",
-        contactText: "Do you have questions about cooperation or want to become our partner? We are always ready to help!",
-        address: "Address",
-        addressText: "18 Suvorov St., Tiraspol, Moldova, 3300",
-        phone: "Phone",
-        email: "Email",
+        contactTitle: "Become Our Partner Now",
+        formName: "Name",
+        formEmail: "Email",
+        formMessage: "Message",
+        formButton: "Send",
         footerTitle: "Ferragroexim",
         footerText: "Reliable intermediary between agricultural producers and processing enterprises.",
         footerNav: "Navigation",
@@ -146,15 +159,13 @@ const translations = {
         nav1: "About",
         nav2: "Services",
         nav3: "Partners",
-        nav4: "Certificates",
-        nav5: "Contacts"
+        nav4: "Become Our Partner"
     },
     ro: {
         navAbout: "Despre noi",
         navServices: "Direcții",
         navPartners: "Parteneri",
-        navCertificates: "Certificări",
-        navContact: "Contacte",
+        navPartnerNow: "Deveniți partenerul nostru",
         heroTitle: "Conectăm fermierii cu întreprinderile industriale",
         heroText: "Ferragroexim se specializează în achiziționarea de produse agricole de la fermieri și furnizarea de materii prime către fabricile mari de prelucrare.",
         ctaButton: "Contactați-ne",
@@ -180,24 +191,21 @@ const translations = {
         service3Text: "Pește proaspăt și congelat de diverse soiuri pentru aprovizionare cu ridicata.",
         service3Link: "Comandă",
         service4: "Carne animală",
-        service4Text: "Răcită și congelată: carne de vită, porc, pasăre conform standardelor de calitate.",
+        service4Text: "Carne de vită, porc, pasăre conform standardelor de calitate.",
         service4Link: "Comandă",
         service5: "Produse vrac",
-        service5Text: "Zahăr, cacao, cafea, ceai, făină de diferite sortimente pentru industria alimentară.",
+        service5Text: "Zahăr, cacao, cafea, ceai, făină pentru industria alimentară.",
         service5Link: "Comandă",
         service6: "Lapte și produse lactate",
         service6Text: "Lapte proaspăt, brânzeturi, iaurturi și alte produse lactate de cea mai bună calitate.",
         service6Link: "Comandă",
         partnersTitle: "Partenerii noștri",
         partnersSub: "Colaborăm cu întreprinderile de top ale complexului agroindustrial",
-        certificatesTitle: "Certificate de calitate",
-        certificatesSub: "Documentele noastre care confirmă calitatea produselor",
-        contactTitle: "Contactați-ne",
-        contactText: "Aveți întrebări despre cooperare sau doriți să deveniți partenerul nostru? Suntem mereu gata să vă ajutăm!",
-        address: "Adresă",
-        addressText: "Str. Suvorov 18, Tiraspol, Moldova, 3300",
-        phone: "Telefon",
-        email: "Email",
+        contactTitle: "Deveniți partenerul nostru acum",
+        formName: "Nume",
+        formEmail: "Email",
+        formMessage: "Mesaj",
+        formButton: "Trimite",
         footerTitle: "Ferragroexim",
         footerText: "Intermediar de încredere între producătorii agricoli și întreprinderile de prelucrare.",
         footerNav: "Navigare",
@@ -206,15 +214,13 @@ const translations = {
         nav1: "Despre noi",
         nav2: "Direcții",
         nav3: "Parteneri",
-        nav4: "Certificări",
-        nav5: "Contacte"
+        nav4: "Deveniți partenerul nostru"
     },
     ua: {
         navAbout: "Про компанію",
         navServices: "Напрямки",
         navPartners: "Партнери",
-        navCertificates: "Сертифікати",
-        navContact: "Контакти",
+        navPartnerNow: "Станьте нашим партнером",
         heroTitle: "З'єднуємо фермерів з промисловими підприємствами",
         heroText: "Ferragroexim спеціалізується на закупівлі сільськогосподарської продукції у фермерів та постачанні сировини великим переробним заводам.",
         ctaButton: "Зв'язатися з нами",
@@ -266,15 +272,13 @@ const translations = {
         nav1: "Про компанію",
         nav2: "Напрямки",
         nav3: "Партнери",
-        nav4: "Сертифікати",
-        nav5: "Контакти"
+        nav4: "Станьте нашим партнером"
     },
     de: {
         navAbout: "Über uns",
         navServices: "Leistungen",
         navPartners: "Partner",
-        navCertificates: "Zertifikate",
-        navContact: "Kontakt",
+        navPartnerNow: "Werden Sie unser Partner",
         heroTitle: "Wir verbinden Landwirte mit Industrieunternehmen",
         heroText: "Ferragroexim ist spezialisiert auf den Einkauf landwirtschaftlicher Produkte von Landwirten und die Lieferung von Rohstoffen an große Verarbeitungsbetriebe.",
         ctaButton: "Kontaktieren Sie uns",
@@ -326,101 +330,128 @@ const translations = {
         nav1: "Über uns",
         nav2: "Leistungen",
         nav3: "Partner",
-        nav4: "Zertifikate",
-        nav5: "Kontakt"
+        nav4: "Werden Sie unser Partner"
     }
 };
 
 function applyTranslations(lang) {
     const t = translations[lang] || translations.ru;
     
-    // Navigation
-    document.querySelectorAll('.nav-links a')[0].textContent = t.navAbout;
-    document.querySelectorAll('.nav-links a')[1].textContent = t.navServices;
-    document.querySelectorAll('.nav-links a')[2].textContent = t.navPartners;
-    document.querySelectorAll('.nav-links a')[3].textContent = t.navCertificates;
-    document.querySelectorAll('.nav-links a')[4].textContent = t.navContact;
+    // Navigation (новые 4 пункта)
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (navLinks.length >= 4) {
+        navLinks[0].textContent = t.navAbout;
+        navLinks[1].textContent = t.navServices;
+        navLinks[2].textContent = t.navPartners;
+        navLinks[3].textContent = t.navPartnerNow;
+    }
     
     // Hero section
-    document.querySelector('.hero-text h2').textContent = t.heroTitle;
-    document.querySelector('.hero-text p').textContent = t.heroText;
-    document.querySelector('.cta-button').textContent = t.ctaButton;
+    const heroTitle = document.querySelector('.hero-text h2');
+    if (heroTitle) heroTitle.textContent = t.heroTitle;
+    const heroText = document.querySelector('.hero-text p');
+    if (heroText) heroText.textContent = t.heroText;
+    const ctaBtn = document.querySelector('.cta-button');
+    if (ctaBtn) ctaBtn.textContent = t.ctaButton;
     
     // About section
-    document.querySelector('#about .section-title h2').textContent = t.aboutTitle;
-    document.querySelector('#about .section-title p').textContent = t.aboutSub;
-    document.querySelector('.about-text h3').textContent = t.aboutHeading;
-    document.querySelectorAll('.about-text p')[0].textContent = t.aboutText;
+    const aboutTitle = document.querySelector('#about .section-title h2');
+    if (aboutTitle) aboutTitle.textContent = t.aboutTitle;
+    const aboutSub = document.querySelector('#about .section-title p');
+    if (aboutSub) aboutSub.textContent = t.aboutSub;
+    const aboutHeading = document.querySelector('.about-text h3');
+    if (aboutHeading) aboutHeading.textContent = t.aboutHeading;
+    const aboutPara = document.querySelectorAll('.about-text p');
+    if (aboutPara.length > 0) aboutPara[0].textContent = t.aboutText;
     
     const features = document.querySelectorAll('.features-list li');
-    features[0].textContent = t.feature1;
-    features[1].textContent = t.feature2;
-    features[2].innerHTML = t.feature3;
+    if (features.length >= 3) {
+        features[0].textContent = t.feature1;
+        features[1].textContent = t.feature2;
+        features[2].innerHTML = t.feature3;
+    }
     
-    document.querySelectorAll('.stat-label')[0].textContent = t.stat1;
-    document.querySelectorAll('.stat-label')[1].textContent = t.stat2;
-    document.querySelectorAll('.stat-label')[2].textContent = t.stat3;
+    const statLabels = document.querySelectorAll('.stat-label');
+    if (statLabels.length >= 3) {
+        statLabels[0].textContent = t.stat1;
+        statLabels[1].textContent = t.stat2;
+        statLabels[2].textContent = t.stat3;
+    }
     
     // Services section
-    document.querySelector('#services .section-title h2').textContent = t.servicesTitle;
-    document.querySelector('#services .section-title p').textContent = t.servicesSub;
+    const servicesTitle = document.querySelector('#services .section-title h2');
+    if (servicesTitle) servicesTitle.textContent = t.servicesTitle;
+    const servicesSub = document.querySelector('#services .section-title p');
+    if (servicesSub) servicesSub.textContent = t.servicesSub;
     
     const services = document.querySelectorAll('.service-content');
-    services[0].querySelector('h3').textContent = t.service1;
-    services[0].querySelector('p').textContent = t.service1Text;
-    services[0].querySelector('.service-link').innerHTML = t.service1Link + ' <i class="fas fa-arrow-right"></i>';
-    
-    services[1].querySelector('h3').textContent = t.service2;
-    services[1].querySelector('p').textContent = t.service2Text;
-    services[1].querySelector('.service-link').innerHTML = t.service2Link + ' <i class="fas fa-arrow-right"></i>';
-    
-    services[2].querySelector('h3').textContent = t.service3;
-    services[2].querySelector('p').textContent = t.service3Text;
-    services[2].querySelector('.service-link').innerHTML = t.service3Link + ' <i class="fas fa-arrow-right"></i>';
-    
-    services[3].querySelector('h3').textContent = t.service4;
-    services[3].querySelector('p').textContent = t.service4Text;
-    services[3].querySelector('.service-link').innerHTML = t.service4Link + ' <i class="fas fa-arrow-right"></i>';
-    
-    services[4].querySelector('h3').textContent = t.service5;
-    services[4].querySelector('p').textContent = t.service5Text;
-    services[4].querySelector('.service-link').innerHTML = t.service5Link + ' <i class="fas fa-arrow-right"></i>';
-    
-    services[5].querySelector('h3').textContent = t.service6;
-    services[5].querySelector('p').textContent = t.service6Text;
-    services[5].querySelector('.service-link').innerHTML = t.service6Link + ' <i class="fas fa-arrow-right"></i>';
+    if (services.length >= 6) {
+        services[0].querySelector('h3').textContent = t.service1;
+        services[0].querySelector('p').textContent = t.service1Text;
+        services[0].querySelector('.service-link').innerHTML = t.service1Link + ' <i class="fas fa-arrow-right"></i>';
+        
+        services[1].querySelector('h3').textContent = t.service2;
+        services[1].querySelector('p').textContent = t.service2Text;
+        services[1].querySelector('.service-link').innerHTML = t.service2Link + ' <i class="fas fa-arrow-right"></i>';
+        
+        services[2].querySelector('h3').textContent = t.service3;
+        services[2].querySelector('p').textContent = t.service3Text;
+        services[2].querySelector('.service-link').innerHTML = t.service3Link + ' <i class="fas fa-arrow-right"></i>';
+        
+        services[3].querySelector('h3').textContent = t.service4;
+        services[3].querySelector('p').textContent = t.service4Text;
+        services[3].querySelector('.service-link').innerHTML = t.service4Link + ' <i class="fas fa-arrow-right"></i>';
+        
+        services[4].querySelector('h3').textContent = t.service5;
+        services[4].querySelector('p').textContent = t.service5Text;
+        services[4].querySelector('.service-link').innerHTML = t.service5Link + ' <i class="fas fa-arrow-right"></i>';
+        
+        services[5].querySelector('h3').textContent = t.service6;
+        services[5].querySelector('p').textContent = t.service6Text;
+        services[5].querySelector('.service-link').innerHTML = t.service6Link + ' <i class="fas fa-arrow-right"></i>';
+    }
     
     // Partners section
-    document.querySelector('#partners .section-title h2').textContent = t.partnersTitle;
-    document.querySelector('#partners .section-title p').textContent = t.partnersSub;
+    const partnersTitle = document.querySelector('#partners .section-title h2');
+    if (partnersTitle) partnersTitle.textContent = t.partnersTitle;
+    const partnersSub = document.querySelector('#partners .section-title p');
+    if (partnersSub) partnersSub.textContent = t.partnersSub;
     
-    // Certificates section
-    document.querySelector('#certificates .section-title h2').textContent = t.certificatesTitle;
-    document.querySelector('#certificates .section-title p').textContent = t.certificatesSub;
-    
-    // Contact section
-    document.querySelector('.contact-info h2').textContent = t.contactTitle;
-    document.querySelector('.contact-info p').textContent = t.contactText;
-    document.querySelectorAll('.contact-details h4')[0].textContent = t.address;
-    document.querySelectorAll('.contact-details p')[0].textContent = t.addressText;
-    document.querySelectorAll('.contact-details h4')[1].textContent = t.phone;
-    document.querySelectorAll('.contact-details h4')[2].textContent = t.email;
+    // Partner (Form) Block
+    const partnerBlock = document.querySelector('#contact');
+    if (partnerBlock) {
+        const partnerHeading = partnerBlock.querySelector('.partner-container h2');
+        if (partnerHeading) partnerHeading.textContent = t.contactTitle;
+        
+        const formLabels = partnerBlock.querySelectorAll('.partner-form label');
+        if (formLabels.length >= 3) {
+            formLabels[0].textContent = t.formName;
+            formLabels[1].textContent = t.formEmail;
+            formLabels[2].textContent = t.formMessage;
+        }
+        const formButton = partnerBlock.querySelector('.partner-form button');
+        if (formButton) formButton.textContent = t.formButton;
+    }
     
     // Footer
-    document.querySelectorAll('.footer-col h3')[0].textContent = t.footerTitle;
-    document.querySelectorAll('.footer-col p')[0].textContent = t.footerText;
-    document.querySelectorAll('.footer-col h3')[1].textContent = t.footerNav;
-    document.querySelectorAll('.footer-col h3')[2].textContent = t.footerContact;
-    document.querySelector('.copyright p').innerHTML = t.copyright;
+    const footerCols = document.querySelectorAll('.footer-col h3');
+    if (footerCols.length >= 3) {
+        footerCols[0].textContent = t.footerTitle;
+        footerCols[1].textContent = t.footerNav;
+        footerCols[2].textContent = t.footerContact;
+    }
+    const footerPara = document.querySelector('.footer-col p');
+    if (footerPara) footerPara.textContent = t.footerText;
+    const copyrightEl = document.querySelector('.copyright p');
+    if (copyrightEl) copyrightEl.innerHTML = t.copyright;
     
-    // Обновление навигации в футере
+    // Footer navigation links (4 ссылки)
     const footerLinks = document.querySelectorAll('.footer-links a');
-    if (footerLinks.length >= 5) {
+    if (footerLinks.length >= 4) {
         footerLinks[0].textContent = t.nav1;
         footerLinks[1].textContent = t.nav2;
         footerLinks[2].textContent = t.nav3;
         footerLinks[3].textContent = t.nav4;
-        footerLinks[4].textContent = t.nav5;
     }
     
     // Update HTML lang attribute
@@ -468,20 +499,12 @@ languageOptions.forEach(option => {
 
 // Initialize language on page load
 window.addEventListener('DOMContentLoaded', () => {
-    // Get saved language or default to Russian
     const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
-    
-    // Set HTML lang attribute
     document.documentElement.lang = savedLang;
-    
-    // Apply translations
     applyTranslations(savedLang);
-    
-    // Set checkmark for current language
     languageOptions.forEach(option => {
         const icon = option.querySelector('i');
         const lang = option.getAttribute('data-lang');
-        
         if (lang === savedLang) {
             icon.style.opacity = '1';
             icon.style.transform = 'scale(1)';
@@ -490,31 +513,32 @@ window.addEventListener('DOMContentLoaded', () => {
             icon.style.transform = 'scale(0)';
         }
     });
-    
-    // Update current language display
     currentLanguage.textContent = savedLang.toUpperCase();
 });
 
-// Mobile menu toggle
+// ----------------------------
+// Mobile Menu Toggle
+// ----------------------------
 const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.getElementById('navLinks');
+const navLinksElement = document.getElementById('navLinks');
 
 menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+    navLinksElement.classList.toggle('active');
     menuToggle.querySelector('i').classList.toggle('fa-bars');
     menuToggle.querySelector('i').classList.toggle('fa-times');
 });
 
-// Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
+    if (!navLinksElement.contains(e.target) && !menuToggle.contains(e.target) && navLinksElement.classList.contains('active')) {
+        navLinksElement.classList.remove('active');
         menuToggle.querySelector('i').classList.add('fa-bars');
         menuToggle.querySelector('i').classList.remove('fa-times');
     }
 });
 
-// Scroll animations
+// ----------------------------
+// Scroll Animations
+// ----------------------------
 const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -534,7 +558,9 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
     observer.observe(el);
 });
 
-// Scroll to top button
+// ----------------------------
+// Scroll to Top Button
+// ----------------------------
 const scrollTopBtn = document.getElementById('scrollTop');
 
 window.addEventListener('scroll', () => {
@@ -552,22 +578,20 @@ scrollTopBtn.addEventListener('click', () => {
     });
 });
 
-// Smooth scrolling for anchor links
+// ----------------------------
+// Smooth Scrolling for Anchor Links
+// ----------------------------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
         if (targetElement) {
-            // Close mobile menu if open
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
+            if (navLinksElement.classList.contains('active')) {
+                navLinksElement.classList.remove('active');
                 menuToggle.querySelector('i').classList.add('fa-bars');
                 menuToggle.querySelector('i').classList.remove('fa-times');
             }
-            
             window.scrollTo({
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
